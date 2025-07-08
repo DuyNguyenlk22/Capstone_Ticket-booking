@@ -1,13 +1,13 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { getListMovie } from "../../../Services/api";
-import "./features.scss";
-import moment from "moment/moment";
-import { NavLink } from "react-router-dom";
-import { Modal } from "react-responsive-modal";
-import ReactPlayer from "react-player";
-import { useDispatch, useSelector } from "react-redux";
-import { getTrailer } from "../../../redux/reducer/featuresMovieSlice";
-import { message } from "antd";
+import React, { Fragment, useEffect, useState } from 'react';
+import { getListMovie } from '../../../Services/api';
+import './features.scss';
+import moment from 'moment/moment';
+import { NavLink } from 'react-router-dom';
+import { Modal } from 'react-responsive-modal';
+import ReactPlayer from 'react-player';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTrailer } from '../../../redux/reducer/featuresMovieSlice';
+import { message } from 'antd';
 
 export default function FeaturesMovie() {
   const [movieArr, setMovieArr] = useState([]);
@@ -28,7 +28,7 @@ export default function FeaturesMovie() {
     fetchData();
   }, []);
   let renderMovie = () => {
-    return movieArr.slice(2, 7).map((item, index) => {
+    return movieArr.slice(0, 5).map((item, index) => {
       return (
         <Fragment key={index}>
           <div className='feature__item'>
@@ -40,10 +40,10 @@ export default function FeaturesMovie() {
                 {item.tenPhim}
               </h3>
               <span className='text-[13px]'>
-                {item.moTa.length > 50 ? item.moTa.slice(0, 50) + "..." : item.moTa}
+                {item.moTa.length > 50 ? item.moTa.slice(0, 50) + '...' : item.moTa}
               </span>
               <p className='text-sm md:text-base'>
-                Khởi chiếu: <span>{moment(item.ngayKhoiChieu).format("ll")}</span>
+                Khởi chiếu: <span>{moment(item.ngayKhoiChieu).format('ll')}</span>
               </p>
               <div></div>
             </div>
@@ -54,7 +54,7 @@ export default function FeaturesMovie() {
                 </h4>
                 <p>
                   <span>Khởi chiếu: </span>
-                  {moment(item.ngayKhoiChieu).format("ll")}
+                  {moment(item.ngayKhoiChieu).format('ll')}
                 </p>
                 <p>
                   <span>Thể loại: </span> Mystery
@@ -79,18 +79,18 @@ export default function FeaturesMovie() {
                   open={open}
                   styles={{
                     modal: {
-                      width: "100%",
-                      height: "80%",
-                      padding: "0px",
-                      background: "transparent",
+                      width: '100%',
+                      height: '80%',
+                      padding: '0px',
+                      background: 'transparent',
                       margin: 0,
-                      maxWidth: "950px",
+                      maxWidth: '950px',
                     },
                   }}
                   onClose={onCloseModal}
                   closeIcon={<i className='fa-solid fa-x text-white'></i>}
                   center>
-                  <ReactPlayer controls={true} url={trailer} width={"100%"} height={"100%"} />
+                  <ReactPlayer controls={true} url={trailer} width={'100%'} height={'100%'} />
                 </Modal>
                 <NavLink to={`/detail/${item.maPhim}`}>
                   <button className='opacity-70 hover:opacity-100 duration-300'>

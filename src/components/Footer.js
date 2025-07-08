@@ -1,6 +1,6 @@
-import React from "react";
-import "../style/footer.scss";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import '../style/footer.scss';
+import { NavLink } from 'react-router-dom';
 export default function Footer() {
   return (
     <div id='footer' className=' footer'>
@@ -8,7 +8,7 @@ export default function Footer() {
         className='footer__top py-20'
         style={{
           background: `url(../image/footer/footer_bg.png) center / cover no-repeat`,
-          height: "100%",
+          height: '100%',
         }}>
         <div className='container grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-7 '>
           <div>
@@ -28,12 +28,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <NavLink to={"*"} className='hover:text-orange-500 duration-300'>
+                <NavLink to={'*'} className='hover:text-orange-500 duration-300'>
                   Coming soon
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"*"} className='hover:text-orange-500 duration-300'>
+                <NavLink to={'*'} className='hover:text-orange-500 duration-300'>
                   Top rated
                 </NavLink>
               </li>
@@ -43,7 +43,13 @@ export default function Footer() {
             <h4>Bài viết gần đây</h4>
             <div className='mb-4 border-b border-white '>
               <div className='flex mb-5 recentPost__top'>
-                <img loading='lazy' src='../image/footer/footIMG_1.jpg' width={100} alt='...' />
+                <img
+                  className='object-contain'
+                  loading='lazy'
+                  src='../image/footer/footIMG_1.jpg'
+                  width={100}
+                  alt='...'
+                />
                 <div className='recentPost__info'>
                   <h5>Sáu cuốn sách được chuyển thể thành phim đáng mong đợi vào mùa thu này</h5>
                   <span>April 28, 2022</span>
@@ -53,7 +59,13 @@ export default function Footer() {
             </div>
             <div className='border-b border-white recentPost__bot'>
               <div className='flex mb-5 recentPost__top'>
-                <img loading='lazy' src='../image/footer/footIMG_2.jpg' width={100} alt='...' />
+                <img
+                  className='object-contain'
+                  loading='lazy'
+                  src='../image/footer/footIMG_2.jpg'
+                  width={100}
+                  alt='...'
+                />
                 <div className='recentPost__info'>
                   <h5>The Beatles: Eight Days a Week - The Touring</h5>
                   <span>April 28, 2022</span>
@@ -80,16 +92,16 @@ export default function Footer() {
         </div>
       </div>
       <div className='footer__bottom bg-black py-5'>
-        <div className=' container  flex justify-between' style={{ color: "#666666" }}>
+        <div className=' container  flex justify-between' style={{ color: '#666666' }}>
           <div>©copyright 2016 Movie</div>
           <div className='space-x-4 cursor-pointer'>
-            <NavLink to={"https://www.facebook.com/"}>
+            <NavLink to={'https://www.facebook.com/'}>
               <i className='fa-brands fa-facebook-f hover:text-orange-500 duration-300'></i>
             </NavLink>
-            <NavLink to={"https://twitter.com/"}>
+            <NavLink to={'https://twitter.com/'}>
               <i className='fa-brands fa-x-twitter hover:text-orange-500 duration-300'></i>
             </NavLink>
-            <NavLink to={"https://www.linkedin.com/"}>
+            <NavLink to={'https://www.linkedin.com/'}>
               <i className='fa-brands fa-linkedin-in hover:text-orange-500 duration-300'></i>
             </NavLink>
           </div>

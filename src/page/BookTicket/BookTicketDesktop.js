@@ -1,14 +1,14 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { bookTicket, getTicketRoom } from "../../Services/api";
-import "./ticket.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { addTicket, clearThongTinDatVe, handlePayments } from "../../redux/reducer/bookingReducer";
-import { localService } from "../../Services/localService";
-import { ThongTinDatVe } from "../../model/ThongTinDatVe";
+import React, { Fragment, useEffect, useState } from 'react';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { bookTicket, getTicketRoom } from '../../Services/api';
+import './ticket.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTicket, clearThongTinDatVe, handlePayments } from '../../redux/reducer/bookingReducer';
+import { localService } from '../../Services/localService';
+import { ThongTinDatVe } from '../../model/ThongTinDatVe';
 
-import Swal from "sweetalert2";
-import { Radio, Space } from "antd";
+import Swal from 'sweetalert2';
+import { Radio, Space } from 'antd';
 
 export default function BookTicketDesktop() {
   const param = useParams();
@@ -32,7 +32,7 @@ export default function BookTicketDesktop() {
       });
   };
   let switchToProfile = () => {
-    navigate("/profile");
+    navigate('/profile');
     window.location.reload();
   };
   useEffect(() => {
@@ -44,17 +44,17 @@ export default function BookTicketDesktop() {
     thongTinDatVe.maLichChieu = Number(param.id);
     thongTinDatVe.danhSachVe = danhSachGheDangDat;
     Swal.fire({
-      title: "Bạn có muốn thanh toán ?",
-      icon: "info",
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Confirm",
+      title: 'Bạn có muốn thanh toán ?',
+      icon: 'info',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm',
       showDenyButton: true,
       denyButtonText: `Cancel`,
       showCloseButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Bạn đã thanh toán thành công!", "Vui lòng kiểm tra lịch sử đặt vé.", "success");
+        Swal.fire('Bạn đã thanh toán thành công!', 'Vui lòng kiểm tra lịch sử đặt vé.', 'success');
         bookTicket(thongTinDatVe)
           .then((res) => {
             setTimeout(() => {
@@ -66,25 +66,25 @@ export default function BookTicketDesktop() {
             console.log(err.response.data.content);
           });
       } else if (result.isDenied) {
-        Swal.fire("Bạn có muốn mua thêm vé không ?", "", "info");
+        Swal.fire('Bạn có muốn mua thêm vé không ?', '', 'info');
       }
     });
   };
 
   const renderSeats = () => {
     return ticketRoom.danhSachGhe?.map((item, index) => {
-      let classGheVip = item.loaiGhe === "Vip" ? "gheVip" : "";
-      let classGheDaDat = item.daDat ? "gheDaDat" : "";
+      let classGheVip = item.loaiGhe === 'Vip' ? 'gheVip' : '';
+      let classGheDaDat = item.daDat ? 'gheDaDat' : '';
       let indexGheDangChon = danhSachGheDangDat.findIndex((gheDangDat) => {
         return gheDangDat.maGhe === item.maGhe;
       });
-      let cssGheDangDat = "";
-      let classGheDaDuocDat = "";
+      let cssGheDangDat = '';
+      let classGheDaDuocDat = '';
       if (localService.get()?.taiKhoan === item.taiKhoanNguoiDat) {
-        classGheDaDuocDat = "gheDaDuocDat";
+        classGheDaDuocDat = 'gheDaDuocDat';
       }
       if (indexGheDangChon !== -1) {
-        cssGheDangDat = "gheDangDat";
+        cssGheDangDat = 'gheDangDat';
       }
       return (
         <Fragment key={index}>
@@ -95,7 +95,7 @@ export default function BookTicketDesktop() {
             disabled={item.daDat}
             className={`ghe ${classGheVip} ${classGheDaDat} ${cssGheDangDat} ${classGheDaDuocDat}`}>
             {item.daDat ? (
-              classGheDaDuocDat !== "" ? (
+              classGheDaDuocDat !== '' ? (
                 <i className='fa-regular fa-user'></i>
               ) : (
                 <i className='fa-solid fa-x'></i>
@@ -104,7 +104,7 @@ export default function BookTicketDesktop() {
               item.tenGhe
             )}
           </button>
-          {(index + 1) % 16 === 0 ? <br /> : ""}
+          {(index + 1) % 16 === 0 ? <br /> : ''}
         </Fragment>
       );
     });
@@ -119,18 +119,18 @@ export default function BookTicketDesktop() {
       <div
         style={{
           background: `url(${ticketRoom.thongTinPhim?.hinhAnh})top center/cover no-repeat `,
-          marginBottom: "40px",
-          minHeight: "210px",
-          position: "relative",
+          marginBottom: '40px',
+          minHeight: '210px',
+          position: 'relative',
         }}>
         <div
           style={{
             background: `rgba(0,0,0,0.6)`,
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
-            width: "100%",
-            height: "100%",
+            width: '100%',
+            height: '100%',
           }}>
           <div className='text-center '>
             <div className='container'>
@@ -143,9 +143,9 @@ export default function BookTicketDesktop() {
       </div>
       <div id='bookTicket'>
         <div className='grid grid-cols-3 gap-8 hangGhe '>
-          <div className='col-span-2 container flex flex-col items-center'>
+          <div className='col-span-2 container min-w-fit flex flex-col items-center'>
             <div className='w-full'>
-              <div className='bg-black ' style={{ width: "100%", height: 15 }}></div>
+              <div className='bg-black ' style={{ width: '100%', height: 15 }}></div>
               <div className='trapezoid text-center mb-4'>
                 <h3 className=' text-black'>Screen</h3>
               </div>
